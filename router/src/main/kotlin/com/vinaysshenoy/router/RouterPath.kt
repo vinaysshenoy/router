@@ -26,7 +26,7 @@ data class RouterPath(
 
 
 		routeRegex = Regex(
-				pathParams.fold(path, { acc, pathParam -> acc.replace(":$pathParam", "\\w+") })
+				pathParams.fold(path, { acc, pathParam -> acc.replace(":${pathParam.name}", "\\w+") })
 		)
 
 	}
