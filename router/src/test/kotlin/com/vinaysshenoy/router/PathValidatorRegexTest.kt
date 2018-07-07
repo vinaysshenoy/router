@@ -1,5 +1,6 @@
 package com.vinaysshenoy.router
 
+import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldNotThrow
 import org.amshove.kluent.shouldThrow
 import org.junit.Test
@@ -8,7 +9,7 @@ import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
 
 @RunWith(Parameterized::class)
-class RouterPathPathValidatorTest(
+class PathValidatorRegexTest(
 	private val path: String,
 	private val valid: Boolean
 ) {
@@ -32,14 +33,9 @@ class RouterPathPathValidatorTest(
 		)
 	}
 
-	private val routeCreator: (Map<String, String>) -> Route =
-		{ _ -> throw NotImplementedError("Test") }
-
 	@Test
-	fun `test that instantiating RouterPath with the given route is validated properly`() {
-		val function = { RouterPath(path, routeCreator) }
+	fun `test that the valid path regex matches as expected`() {
 
-		if (valid) function shouldNotThrow IllegalArgumentException::class
-		else function shouldThrow IllegalArgumentException::class
+		validPathRegex.matches(path) shouldEqual valid
 	}
 }

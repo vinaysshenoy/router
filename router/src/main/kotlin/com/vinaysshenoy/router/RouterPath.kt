@@ -1,7 +1,5 @@
 package com.vinaysshenoy.router
 
-private val validPathRegex = Regex("(:?[a-z0-9-_.]+)(/:?[a-z0-9-_.]+)*")
-
 data class RouterPath(
 	val path: String,
 	val routeCreator: (Map<String, String>) -> Route
