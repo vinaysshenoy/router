@@ -17,6 +17,8 @@ class RouterPathPathValidatorTest(
 		@JvmStatic @Parameters
 		fun testParams() = arrayOf<Any>(
 				arrayOf("asd/123", true),
+				arrayOf("asd", true),
+				arrayOf(":asf", true),
 				arrayOf(":asd/123", true),
 				arrayOf("asd/:123/wer/:p2/:q2", true),
 				arrayOf("asd/:as34/_45/.er_/:p1_q1./rty", true),
