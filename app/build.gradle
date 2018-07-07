@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+
+  compileSdkVersion rootProject.targetSdk
+
+  defaultConfig {
+    applicationId rootProject.applicationId
+    minSdkVersion rootProject.minSdk
+    targetSdkVersion rootProject.targetSdk
+    versionCode rootProject.versionCode
+    versionName rootProject.versionName
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+    androidTest.java.srcDirs += 'src/androidTest/kotlin'
+  }
+
+  testOptions {
+
+    unitTests.all {
+      testLogging {
+        events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+      }
+    }
+
+    unitTests.returnDefaultValues = true
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+}
+
+dependencies {
+  compile project(':router')
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$compile.kotlin"
+  implementation "com.android.support:appcompat-v7:$compile.appCompat"
+  implementation "com.jakewharton.timber:timber:$compile.timber"
+  //Explicitly adding dependency because of appcompat
+  implementation "android.arch.lifecycle:runtime:$compile.lifecycle"
+  implementation "android.arch.core:runtime:$compile.lifecycle"
+  testImplementation "junit:junit:$test.junit"
+  testImplementation "org.amshove.kluent:kluent-android:$test.kluent"
+  androidTestImplementation "com.android.support.test:runner:$test.androidTestRunner"
+  androidTestImplementation "com.android.support.test.espresso:espresso-core:$test.espresso"
+  androidTestImplementation "org.amshove.kluent:kluent-android:$test.kluent"
+}
