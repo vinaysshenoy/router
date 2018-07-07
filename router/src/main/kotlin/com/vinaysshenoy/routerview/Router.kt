@@ -6,6 +6,7 @@ import android.arch.lifecycle.Lifecycle.State.DESTROYED
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.OnLifecycleEvent
+import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.v4.app.FragmentActivity
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ private val minimumLifecycleState = Lifecycle.State.INITIALIZED
 
 class Router(
 	source: LifecycleOwner,
+	savedInstanceState: Bundle?,
 	private val container: ViewGroup
 ) : LifecycleObserver {
 
@@ -31,9 +33,13 @@ class Router(
 		}
 	}
 
-	@JvmOverloads constructor(activity: FragmentActivity, @IdRes layoutResId: Int = -1) :
+	@JvmOverloads constructor(
+		activity: FragmentActivity,
+		savedInstanceState: Bundle?, @IdRes layoutResId: Int = -1
+	) :
 			this(
 					source = activity,
+					savedInstanceState = savedInstanceState,
 					container = layoutResId.let {
 						var container = activity.findViewById<ViewGroup?>(layoutResId)
 

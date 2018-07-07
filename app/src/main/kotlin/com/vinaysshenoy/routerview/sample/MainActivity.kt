@@ -12,6 +12,6 @@ class MainActivity: AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
-		router = Router(this, findViewById<ViewGroup>(R.id.container))
+		router = Router(this, savedInstanceState, findViewById<ViewGroup>(R.id.container))
 	}
 }
