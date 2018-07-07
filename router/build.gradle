@@ -50,6 +50,8 @@ dependencies {
   implementation "com.jakewharton.timber:timber:$compile.timber"
   kapt "android.arch.lifecycle:compiler:$compile.lifecycle"
   testImplementation "junit:junit:$test.junit"
+  testImplementation "org.amshove.kluent:kluent-android:$test.kluent"
   androidTestImplementation "com.android.support.test:runner:$test.androidTestRunner"
   androidTestImplementation "com.android.support.test.espresso:espresso-core:$test.espresso"
+  androidTestImplementation "org.amshove.kluent:kluent-android:$test.kluent"
 }

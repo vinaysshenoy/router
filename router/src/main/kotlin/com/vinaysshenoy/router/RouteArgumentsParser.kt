@@ -39,8 +39,8 @@ class RouteArgumentsParserImpl : RouteArgumentsParser {
 		queryPart
 				.split("&")
 				.map { it.split("=") }
-				.filter { it.size != 2 }
-				.map { it[0].trim() to it[1].trim() }
+				.filter { it.size == 2 }
+				.map { it[0] to it[1] }
 				.toMap()
 
 	private fun readPathParams(
@@ -51,8 +51,8 @@ class RouteArgumentsParserImpl : RouteArgumentsParser {
 		val requiredPartIndicesInPath = pathParams.map { it.index }
 
 		val pathParts = pathPart.split("/")
-				.filterIndexed { index, _ -> index in requiredPartIndicesInPath }
-				.mapIndexed { index, path -> index to path }
+				.mapIndexed { index, part -> index to part }
+				.filter { (index, _) -> index in requiredPartIndicesInPath }
 				.associateBy({ it.first }, { it.second })
 
 		if (pathParts.size != pathParams.size) throw IllegalArgumentException(
