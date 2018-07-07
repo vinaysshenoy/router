@@ -9,7 +9,7 @@ data class RouterPath(
 
 	val routeRegex: Regex
 
-	val pathParams: Set<PartParamIndex>
+	val pathParams: Set<PathParamIndex>
 
 	init {
 
@@ -18,10 +18,10 @@ data class RouterPath(
 		)
 
 		pathParams = path.split("/")
-				.mapIndexed { index, part -> PartParamIndex(part, index) }
-				.filter { (part, _) -> part.startsWith(":") }
-				.filter { (part, _) -> part.length > 1 }
-				.map { it.copy(part = it.part.substring(1)) }
+				.mapIndexed { index, part -> PathParamIndex(part, index) }
+				.filter { (name, _) -> name.startsWith(":") }
+				.filter { (name, _) -> name.length > 1 }
+				.map { it.copy(name = it.name.substring(1)) }
 				.toSet()
 
 
@@ -32,26 +32,5 @@ data class RouterPath(
 	}
 
 	fun matches(path: String) = routeRegex.matches(path)
-
-	fun parseParams(path: String): Map<String, String> {
-
-		val map = mutableMapOf<String, String>()
-
-		//Read path params first, then query params
-		val parts = path.split('?').let {
-			when {
-				it.size == 2 -> it
-				it.size == 1 -> listOf(it, "") //Query parameter ('?') is absent, initialize query string to empty
-				it.size > 2 -> throw IllegalArgumentException("path cannot contain more than one '?' character")
-				else -> throw RuntimeException("Unknown error!")
-			}
-		}
-		return map.toMap()
-	}
-
 }
 
-data class PartParamIndex(
-	val part: String,
-	val index: Int
-)
