@@ -1,4 +1,4 @@
-package com.vinaysshenoy.routerview
+package com.vinaysshenoy.router
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.Lifecycle.Event.ON_ANY

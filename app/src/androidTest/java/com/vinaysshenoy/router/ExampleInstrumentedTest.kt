@@ -1,4 +1,4 @@
-package com.vinaysshenoy.routerview
+package com.vinaysshenoy.router
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

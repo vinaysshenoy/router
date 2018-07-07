@@ -1,4 +1,4 @@
-package com.vinaysshenoy.routerview.sample
+package com.vinaysshenoy.router.sample
 
 import android.app.Application
 import timber.log.Timber

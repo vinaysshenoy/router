@@ -1,9 +1,9 @@
-package com.vinaysshenoy.routerview.sample
+package com.vinaysshenoy.router.sample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.ViewGroup
-import com.vinaysshenoy.routerview.Router
+import com.vinaysshenoy.router.Router
 
 class MainActivity: AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.vinaysshenoy.routerview
+package com.vinaysshenoy.router
 
 import org.junit.Test
 
